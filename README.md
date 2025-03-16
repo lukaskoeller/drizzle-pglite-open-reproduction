@@ -1,39 +1,34 @@
-# sv
+# drizzle-pglite-open-reproduction
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+## Connected Issue
 
-## Creating a project
+https://github.com/drizzle-team/drizzle-orm/issues/4278
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Reproduction
 
-```bash
-# create a new project in the current directory
-npx sv create
-
-# create a new project in my-app
+1. Creating a new SvelteKit app:
+```sh
 npx sv create my-app
 ```
 
-## Developing
+2. Follow the "[Get Started with Drizzle and PGlite](https://orm.drizzle.team/docs/get-started/pglite-new)" guide.
+3. Add `driver: 'pglite'` to `drizzle.config.ts` to get rid of `To connect to Postgres database - please install either of 'pg', 'postgres', '@neondatabase/serverless' or '@vercel/postgres' drivers`.
+4. Run `npx drizzle-kit push`
+5. This puts out following error in the zsh:
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+```zsh
+lukas@Mac readii % npx drizzle-kit push
+No config path provided, using default 'drizzle.config.ts'
+Reading config file '/Users/lukas/Documents/priv/readii/drizzle.config.ts'
+TypeError: Cannot read properties of null (reading 'open')
+    at Object.getDB (/Users/lukas/Documents/priv/readii/node_modules/.pnpm/@electric-sql+pglite@0.2.17/node_modules/@electric-sql/pglite/release/postgres.js:9:113692)
+    at Object.getRemoteSet (/Users/lukas/Documents/priv/readii/node_modules/.pnpm/@electric-sql+pglite@0.2.17/node_modules/@electric-sql/pglite/release/postgres.js:9:114890)
+    at callback (/Users/lukas/Documents/priv/readii/node_modules/.pnpm/@electric-sql+pglite@0.2.17/node_modules/@electric-sql/pglite/release/postgres.js:9:113341)
+    at Object.getLocalSet (/Users/lukas/Documents/priv/readii/node_modules/.pnpm/@electric-sql+pglite@0.2.17/node_modules/@electric-sql/pglite/release/postgres.js:9:114798)
+    at Object.syncfs (/Users/lukas/Documents/priv/readii/node_modules/.pnpm/@electric-sql+pglite@0.2.17/node_modules/@electric-sql/pglite/release/postgres.js:9:113275)
+    at mount (/Users/lukas/Documents/priv/readii/node_modules/.pnpm/@electric-sql+pglite@0.2.17/node_modules/@electric-sql/pglite/release/postgres.js:9:131497)
+    at Array.forEach (<anonymous>)
+    at Object.syncfs (/Users/lukas/Documents/priv/readii/node_modules/.pnpm/@electric-sql+pglite@0.2.17/node_modules/@electric-sql/pglite/release/postgres.js:9:131429)
+    at <anonymous> (/Users/lukas/Documents/priv/readii/node_modules/.pnpm/@electric-sql+pglite@0.2.17/node_modules/@electric-sql/pglite/src/fs/idbfs.ts:31:26)
+    at new Promise (<anonymous>)
 ```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
-# drizzle-pglite-open-reproduction
