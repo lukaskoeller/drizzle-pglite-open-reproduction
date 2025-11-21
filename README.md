@@ -13,8 +13,9 @@ npx sv create my-app
 
 2. Follow the "[Get Started with Drizzle and PGlite](https://orm.drizzle.team/docs/get-started/pglite-new)" guide.
 3. Add `driver: 'pglite'` to `drizzle.config.ts` to get rid of `To connect to Postgres database - please install either of 'pg', 'postgres', '@neondatabase/serverless' or '@vercel/postgres' drivers`.
-4. Run `npx drizzle-kit push`
-5. This puts out following error in the zsh:
+4. Create an `.env` file with the contents from `.env.example`
+5. Run `npx drizzle-kit push`
+6. This puts out following error in the zsh:
 
 ```zsh
 lukas@Mac readii % npx drizzle-kit push
